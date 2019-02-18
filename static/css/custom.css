@@ -1,0 +1,17 @@
+p {
+  color: red;
+}
+
+.container{
+  background-color: lightblue;
+  display: block;
+}
+
+.splash{
+  background-color: black;
+  margin-top: 3%;
+}
+
+h1{
+  color: darkgreen;
+}
