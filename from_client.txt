@@ -1,0 +1,27 @@
+Client profile: An individual who has trouble managing their time.
+Requirements overview: An app to help organise tasks, to be used on the go and at home, by the individual. To be used for both work and personal tasks.
+
+Tasks to be managed by deadline.
+
+Required functionalities:
+create new tasks
+mark tasks as done/not done
+mark task priority: low, medium, high
+select task to see more information
+delete tasks from app
+add date to task
+edit tasks once created (nth)
+add category to task (nth)
+estimate duration of task (nth)
+
+Required UX:
+tasks to appear as list
+tasks to appear as struck out once marked as done
+bin icon for deleting tasks (alternatively the word 'remove'; not 'delete')
+dark colour scheme
+view by calendar (nth)
+order tasks by priority
+choice to order by date (nth)
+
+No special requirements - no screen reader will be used, no large text required, etc.
+
