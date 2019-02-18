@@ -30,6 +30,10 @@ def get_data_from_db(query, search_term):
     except:
         return None
         
-def get_task():
-    person_data = get_data_from_db("SELECT * FROM person WHERE surname = ?", surname.title())
-    return person_data
+def get_task_by_id(id_number):
+    task_info = get_data_from_db("SELECT * FROM person WHERE id = ?", id_number)
+    return task_info
+        
+def change_task_title(id_number, new_title):
+    title_change = get_data_from_db("UPDATE table SET title = ? WHERE id = ?", id_number, new_title)
+    return title_change
