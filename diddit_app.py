@@ -5,13 +5,71 @@ Created on Mon Feb 18 14:49:55 2019
 @author: amand
 """
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+import sqlite3
 from diddit_funcs import *
-app=Flask("MyApp")
-      
+
+app=Flask(__name__)
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
+
 @app.route("/", methods=["GET", "POST"])
 def home():      
-    results = {"id":1, "title":"Buy milk","description":"Make sure has best before of more than two days away.","status":"not done", "priority":"medium", "date":{"start_date":"2019-02-20T00:00:00Z", "end_date":"2019-02-20T00:30:00Z"}}
-    return render_template ("index.html", title="results_page", **locals())
+    return render_template ("index.html")
 
-app.run(debug=True)
+@app.route("/v1/entries/tasks/all", methods=["GET"])
+def all_tasks():      
+    conn = sqlite3.connect("to_do_list.db")
+    conn.row_factory = dict_factory
+    c = conn.cursor()
+    all_tasks = c.execute("SELECT * FROM to_do_list;").fetchall()
+    return jsonify(all_tasks)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return "<h1>404</h1><p>The entry could not be found.</p>", 404
+
+@app.route("/v1/entries/tasks", methods=["GET"])
+def tasks_filter():
+    query_parameters = request.args
+    
+    id = query_parameters.get("id")
+    title = query_parameters.get("title")
+    status = query_parameters.get("status")
+    importance = query_parameters.get("importance")
+    
+    query = "SELECT * FROM to_do_list WHERE"
+    to_filter = []
+    
+    if id:
+        query += " id=? AND"
+        to_filter.append(id)
+    if title:
+        query += " title=? AND"
+        to_filter.append(title)
+    if status:
+        query += " status=? AND"
+        to_filter.append(status)
+    if importance:
+        query += " importance=? AND"
+        to_filter.append(importance)
+    if not (id or title or status or importance):
+        return page_not_found(404)
+    
+    query = query[:-4] + ";"
+    
+    conn = sqlite3.connect("to_do_list.db")
+    conn.row_factory = dict_factory
+    c = conn.cursor()
+    
+    results = c.execute(query, to_filter).fetchall()
+    
+    return jsonify(results)
+        
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)

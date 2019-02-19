@@ -8,6 +8,9 @@ Created on Mon Feb 18 14:50:25 2019
 import sqlite3
 import os
 
+conn = sqlite3.connect("to_do_list.db")
+c = conn.cursor()
+
 def check_db(db_path):
     if os.path.exists(db_path):
         return True
