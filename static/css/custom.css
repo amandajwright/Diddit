@@ -1,5 +1,5 @@
 p {
-  color: red;
+  color: darkgreen;
 }
 
 .container{
@@ -14,4 +14,8 @@ p {
 
 h1{
   color: darkgreen;
+}
+
+.strikethrough:checked + .strikeThis {
+  text-decoration: line-through
 }
