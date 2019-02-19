@@ -70,6 +70,11 @@ def tasks_filter():
     
     return jsonify(results)
         
+@app.route("/v1/entries/tasks/<int:id>", methods=["GET"])
+def filter_by_id():
+    sql_statement = "SELECT * FROM to_do_list WHERE id = {}".format(id)
+    results = sql_statement.results
+    return jsonify(results)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
