@@ -73,3 +73,18 @@ def tasks_filter():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
+
+#from flask import Flask, request, jsonify
+#from flask_restful import Resource, Api
+#from sqlalchemy import create_engine
+#from json import dumps
+#
+#db_connect = create_engine("sqlite:///to_do_list")
+#app = Flask(__name__)
+#api = Api(app)
+#
+#class Tasks(Resource):
+#    def post(self, id, title, status, importance):
+#        conn = db_connect.connect()
+#        query = conn.execute("INSERT INTO to_do_list(id, title, status, importance) VALUES (?, ?, ?, ?, ?, ?)", (id, title, status, importance,))
+#        
