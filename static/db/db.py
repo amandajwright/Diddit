@@ -1,5 +1,6 @@
 import sqlite3
 from os.path import exists, isfile
+import re
 
 def get_db():
 	# db_path = 'file:static/db/to_do_list.db'
@@ -31,6 +32,27 @@ def create_db(db_path, connection, cursor):
         connection.commit()
     else:
         raise('Unable to create table')
+
+def list_all_db():
+	db_path = get_db()
+	if check_db(db_path):
+		try:
+			conn, c = connect_db(db_path)
+			# db_path = 
+			# query = 'FROM {} SELECT *'.format(db_path)
+			# cursor.execute(query)
+			c.execute('SELECT * FROM to_do_list')
+			list_all = c.fetchall()
+			close_db()
+			return list_all
+		except Exception as e:
+			print(e)
+		
+def close_db():
+	db_path = get_db()
+	conn, c = connect_db(db_path)
+	c.close()
+	conn.close()
 
 if __name__ == '__main__':
 	db_path = get_db()
