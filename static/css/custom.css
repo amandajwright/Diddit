@@ -19,3 +19,7 @@ h1{
 .strikethrough:checked + .strikeThis {
   text-decoration: line-through
 }
+
+#formGroupTaskDescription{
+  line-height: 2em;
+}
