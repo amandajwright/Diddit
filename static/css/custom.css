@@ -1,0 +1,34 @@
+p {
+  color: whites;
+}
+
+.container{
+  background-color: lightblue;
+  display: block;
+  min-height: 70%
+}
+
+.splash{
+  background-color: darkblue;
+  margin-top: 3%;
+}
+
+#todaystasks{
+  margin: 3% 0%
+}
+h1{
+  color: darkgreen;
+}
+
+.strikethrough:checked + .strikeThis {
+  text-decoration: line-through
+}
+.strikethrough{
+  margin-left: 5%;
+}
+
+
+.half-rule {
+    width: 70%;
+    border-top: 3px dotted white;
+ }
