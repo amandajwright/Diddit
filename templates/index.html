@@ -5,6 +5,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../static/css/custom.css">
   <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
   <title> diddit - get things done </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -16,19 +20,14 @@
   <!--closes splash div-->
 
   <div class="container main-page col-xs-6 col-md-8">
-
-
-<!--    <h2 class="float-right"> task view</h2>-->
-    <h3 id="todaystasks"> tasks for today </h3>
-
-
-    <div class="form-group col-xs-6 col-md-8">
+    <div class="full-task-list ">
   <!--    <label for="inputName" class="col-md-1 control-label">...</label>-->
       <h3 id="todaystasks"> tasks for today </h3>
-      <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
-        <label for="task-1" class="strikeThis">buy milk (check to strike through the task)</label></div>
-      <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
-        <label for="task-1" class="strikeThis">download anaconda</label></div>
+      <div class="single-task"><input name="task-1" class="strikethrough" type="checkbox">
+        <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">buy milk (check to strike through the task)</a></label></div>
+
+      <div><input name="task-2" class="strikethrough"  type="checkbox">
+        <label for="task-1" class="strikeThis importantTask"> <a data-toggle="modal" href="#ViewTaskModal">download anaconda</a></label></div>
 
     <hr class="half-rule">
     <h3 id="upcoming_tasks"> tasks for the future </h3>
@@ -36,19 +35,18 @@
       <label for="task-1" class="strikeThis"> task 3 </label></div>
     <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
       <label for="task-1" class="strikeThis">task 4 - important </label></div>
+
       </div> <!--closes form-group class-->
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      add a new task
-    </button><!--change this to an icon-->
+    <!-- New Task Button trigger modal -->
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NewTaskModal"><i class="far fa-calendar-plus"></i> new task </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- New Task Modal -->
+    <div class="modal fade" id="NewTaskModal" tabindex="-1" role="dialog" aria-labelledby="NewTaskModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">New task</h5>
+            <h5 class="modal-title" id="NewTaskModalLabel">New task</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -68,13 +66,7 @@
               </div>
               <div><!--div for datepicker-->
                 <label class="control-label" for="date">Due by:</label>
-
-                <input id="datepicker"/>
-              <!--  <script>
-                  $('#datepicker').datepicker({
-                    uiLibrary: 'bootstrap4'
-                  });
-                </script>-->
+                <input id="datepicker">
               </div><!--closes datepicker div-->
             </form>
           </div>
@@ -86,6 +78,44 @@
     </div>
   </div>
   <!--closes main container div-->
+  <!-- View Task Modal -->
+  <div class="modal fade" id="ViewTaskModal" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ViewTaskModalLabel">View/edit task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form role="form" method="post">
+            <div class="form-group">
+  <label for="formGroupTaskInput">Task:</label>
+  <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" placeholder="What do you need to do?">
+  </div>
+  <div class="form-group">
+  <label for="formGroupTaskDescription">Description</label>
+  <input type="text" class="form-control form-control-sm" height="200" id="formGroupTaskDescription" >
+  </div>
+            <div class="checkbox d-flex justify-content-center">
+              <label><input type="checkbox"> Mark as important </label>
+            </div>
+            <div><!--div for datepicker-->
+              <label class="control-label" for="date">Due by:</label>
+              <input class="datepicker"/>
+            </div><!--closes datepicker div-->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info btn-lg"><i><span class="far fa-calendar-check icon-large"></span></i> diddit</button>
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ConfirmDeleteModal"><i><span class="fas fa-trash-alt"></span></i> delete </button>
+
+          <button type="button" class="btn btn-info btn-lg"><i><span class="far fa-check-circle"></span></i> save </button>
+          <button type="button" class="btn btn-info btn-lg"><i><span class="far fa-arrow-alt-circle-left"></span></i> back </button>
+        </div><!--closes modal footer -->
+      </div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
