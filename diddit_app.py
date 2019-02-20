@@ -25,10 +25,6 @@ def dict_factory(cursor, row):
 
 @app.route("/", methods=["GET", "POST"])
 def home():     
-    # # @app.route("/v1/entries/tasks/all", methods=["GET"])
-    # all_tasks = all_tasks()
-    # return render_template("index.html", all_tasks=all_tasks)
-    # testing = test()
     return render_template("index.html")
 
 @app.route("/v1/entries/tasks/all", methods=["GET"])
@@ -46,7 +42,6 @@ def page_not_found(e):
 @app.route("/v1/entries/tasks", methods=["GET"])
 def tasks_filter():
     query_parameters = request.args
-    
     id = query_parameters.get("id")
     title = query_parameters.get("title")
     status = query_parameters.get("status")
