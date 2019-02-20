@@ -1,13 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 18 14:49:55 2019
-
-@author: amand
-"""
-
 from flask import Flask, render_template, request, jsonify
 import sqlite3
 from diddit_funcs import *
+from db import *
 import requests
 
 app=Flask(__name__)
@@ -17,11 +11,6 @@ def dict_factory(cursor, row):
     for idx, col in enumerate(cursor.description):
         d[col[0]] = row[idx]
     return d
-
-# def test():
-#     data = requests.get('http://127.0.0.1:5000/v1/entries/tasks/all')
-#     x = data.content
-#     return x
 
 @app.route("/", methods=["GET", "POST"])
 def home():     
@@ -34,6 +23,16 @@ def all_tasks():
     c = conn.cursor()
     all_tasks = c.execute("SELECT * FROM to_do_list;").fetchall()
     return jsonify(all_tasks)
+
+@app.route("/v1/entries/tasks/create", methods=["POST"])
+def create_task():
+    db_path = get_db()
+    conn, c = connect_db(db_path)
+    conn.row_factory = dict_factory
+    c.execute("""INSERT INTO to_do_list(id, title, description, status, priority, start_date, end_date) VALUES(?, ?, ?, ?, ?, ?, ?), (id, title, description, status, priority, start_date, end_date)""")
+    conn.commit()
+    close_db()
+
 
 @app.errorhandler(404)
 def page_not_found(e):

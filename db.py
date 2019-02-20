@@ -65,8 +65,6 @@ def list_all_db():
 			print(e)
 		
 def close_db():
-	db_path = get_db()
-	conn, c = connect_db(db_path)
 	c.close()
 	conn.close()
 
