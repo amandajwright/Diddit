@@ -7,8 +7,9 @@ Created on Mon Feb 18 14:50:25 2019
 
 import sqlite3
 import os
+import requests
 
-conn = sqlite3.connect("to_do_list.db")
+conn = sqlite3.connect("static/db/to_do_list.db")
 c = conn.cursor()
 
 def check_db(db_path):
@@ -40,3 +41,5 @@ def get_task_by_id(id_number):
 def change_task_title(id_number, new_title):
     title_change = get_data_from_db("UPDATE table SET title = ? WHERE id = ?", id_number, new_title)
     return title_change
+
+

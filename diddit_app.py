@@ -8,6 +8,7 @@ Created on Mon Feb 18 14:49:55 2019
 from flask import Flask, render_template, request, jsonify
 import sqlite3
 from diddit_funcs import *
+import requests
 
 app=Flask(__name__)
 
@@ -17,13 +18,22 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
+# def test():
+#     data = requests.get('http://127.0.0.1:5000/v1/entries/tasks/all')
+#     x = data.content
+#     return x
+
 @app.route("/", methods=["GET", "POST"])
-def home():      
-    return render_template ("index.html")
+def home():     
+    # # @app.route("/v1/entries/tasks/all", methods=["GET"])
+    # all_tasks = all_tasks()
+    # return render_template("index.html", all_tasks=all_tasks)
+    # testing = test()
+    return render_template("index.html")
 
 @app.route("/v1/entries/tasks/all", methods=["GET"])
 def all_tasks():      
-    conn = sqlite3.connect("to_do_list.db")
+    conn = sqlite3.connect("static/db/to_do_list.db")
     conn.row_factory = dict_factory
     c = conn.cursor()
     all_tasks = c.execute("SELECT * FROM to_do_list;").fetchall()
