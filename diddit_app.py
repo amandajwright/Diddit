@@ -30,10 +30,17 @@ def create_task():
     task_id = assign_task_id()
     title = form_data['formGroupTaskInput']
     description = form_data['formGroupTaskDescription']
-#    status = 'not done'
-#    priority = form_data['priority']
-#    date = form_data['start_date']
-    get_data_from_db("INSERT INTO to_do_list(id, title, description) VALUES({},{},{})".format(task_id, title, description,))
+    status = 'not done'
+    if request.form.get('priority'):
+        priority = "high"
+    else:
+        priority = "low"
+    date = form_data['start_date']
+    conn = sqlite3.connect("static/db/to_do_list.db")
+    c = conn.cursor()
+    c.execute('INSERT INTO to_do_list(id, title, description, status, priority, start_date) VALUES(?,?,?,?,?,?)',(task_id, title, description, status, priority, date,))
+    conn.commit()
+    close_db(c, conn)
     return redirect("http://127.0.0.1:5000/", code=302)
 
 @app.errorhandler(404)
