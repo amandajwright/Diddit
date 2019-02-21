@@ -56,7 +56,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form role="form" method="post">
+            <form role="form" method="post" action="/v1/entries/tasks/create">
               <div class="form-group">
     <label for="formGroupTaskInput">Task:</label>
     <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" placeholder="What do you need to do?">
@@ -91,7 +91,7 @@
 </body>
 <script>
 fetch('http://127.0.0.1:5000/v1/entries/tasks/all')
-  .then(response => response.json()) 
+  .then(response => response.json())
   .then(json => document.getElementById('api-resp').innerHTML = JSON.stringify(json))
 </script>
 

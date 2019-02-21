@@ -29,14 +29,16 @@ def create_task():
     db_path = get_db()
     conn, c = connect_db(db_path)
     form_data = request.form
+    task_id = assign_task_id()
     title = form_data['formGroupTaskInput']
     description = form_data['formGroupTaskDescription']
     status = 'not done'
     priority = form_data['priority']
-    start_date = form_data['start_date']
-    c.execute("INSERT INTO to_do_list(id, title, description, status, priority, start_date, end_date) VALUES(?,?,?,?,?,?)",(task_id, title, description, status, priority, start_date,))
+    date = form_data['start_date']
+    c.execute("INSERT INTO to_do_list(id, title, description, status, priority, start_date) VALUES(?,?,?,?,?,?)",(task_id, title, description, status, priority, date,))
     conn.commit()
     close_db()
+    return redirect("http://127.0.0.1:5000/", code=302)
 
 @app.errorhandler(404)
 def page_not_found(e):
