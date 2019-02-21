@@ -29,17 +29,21 @@ def create_task():
     db_path = get_db()
     conn, c = connect_db(db_path)
     conn.row_factory = dict_factory
-    id = 6
+    task_id = 3
     title = 'Eat yoghurt'
     description = 'Yoghurt in fridge'
     status = 'not done'
     priority = 'high'
     start_date = '2019-02-21'
     end_date = '2019-02-21'
-    c.execute("""INSERT INTO to_do_list(id, title, description, status, priority, start_date, end_date) VALUES(?, ?, ?, ?, ?, ?, ?), (id, title, description, status, priority, start_date, end_date)""")
+    c.execute("INSERT INTO to_do_list(id, title, description, status, priority, start_date, end_date) VALUES(?,?,?,?,?,?,?)",(task_id, title, description, status, priority, start_date, end_date,))
     conn.commit()
-    close_db()
-    
+    # close_db()
+    c.close
+    conn.close
+
+create_task()
+
 @app.errorhandler(404)
 def page_not_found(e):
     return "<h1>404</h1><p>The entry could not be found.</p>", 404
