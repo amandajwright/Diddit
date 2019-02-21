@@ -1,23 +1,72 @@
-p {
-  color: whites;
+body {
+  background-image: url("../images/threaded-dark-one.gif")
+  background: white;
+}
+h3{
+  color: pink;
 }
 
+p {
+  color: white;
+}
+.importantTask{
+  font-weight: bold;
+}
+.single-task {
+  padding: 1.5% 0%
+}
+
+.task-section-title{
+  padding-top: 4%;
+}
+.modal-backdrop {
+   background-color: grey;
+}
+.delete-task-footer{
+  text-align: center;
+}
+
+a {
+  color: inherit;
+}
+a:link {
+  color: inherit;
+  text-decoration: none
+}
+
+label{
+  font-size: 1.5em;
+}
+a:hover {
+  font-weight: bold;
+}
+a:active {
+  color: inherit;
+}
+
+input[type=checkbox] {
+  transform: scale(2.0);
+  margin-right: 5%;
+
+}
 .container{
-  background-color: lightblue;
   display: block;
   min-height: 70%
 }
 
-.splash{
-  background-color: darkblue;
-  margin-top: 3%;
+img { width: 15%;
+  height: auto;
+  align: center;
 }
 
-#todaystasks{
-  margin: 3% 0%
+.splash{
+  min-height: 30%;
 }
+
 h1{
-  color: darkgreen;
+  color: lightblue;
+  text-align: center;
+  padding: 4% 0%;
 }
 
 .strikethrough:checked + .strikeThis {
@@ -27,8 +76,8 @@ h1{
   margin-left: 5%;
 }
 
-
 .half-rule {
     width: 70%;
     border-top: 3px dotted white;
+    padding-bottom: 0%
  }
