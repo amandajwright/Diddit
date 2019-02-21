@@ -32,8 +32,7 @@ def create_task():
     c.execute("""INSERT INTO to_do_list(id, title, description, status, priority, start_date, end_date) VALUES(?, ?, ?, ?, ?, ?, ?), (id, title, description, status, priority, start_date, end_date)""")
     conn.commit()
     close_db()
-
-
+    
 @app.errorhandler(404)
 def page_not_found(e):
     return "<h1>404</h1><p>The entry could not be found.</p>", 404
