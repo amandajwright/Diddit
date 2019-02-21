@@ -42,6 +42,43 @@ def create_task():
     conn.commit()
     close_db(c, conn)
     return redirect("http://127.0.0.1:5000/", code=302)
+#
+#@app.route("/v1/entries/tasks/edit", methods=["GET", "POST"])
+#def create_task():
+#    form_data = request.form
+#    task_id = assign_task_id()
+#    title = form_data['formGroupTaskInput']
+#    description = form_data['formGroupTaskDescription']
+#    status = 'not done'
+#    if request.form.get('priority'):
+#        priority = "high"
+#    else:
+#        priority = "low"
+#    date = form_data['start_date']
+#    conn = sqlite3.connect("static/db/to_do_list.db")
+#    c = conn.cursor()
+#    c.execute('INSERT INTO to_do_list(id, title, description, status, priority, start_date) VALUES(?,?,?,?,?,?)',(task_id, title, description, status, priority, date,))
+#    conn.commit()
+#    close_db(c, conn)
+#    return redirect("http://127.0.0.1:5000/", code=302)
+#
+#@app.route("/v1/entries/tasks/delete", methods=["DELETE"])
+#def create_task():
+#    form_data = request.form
+#    title = form_data['formGroupTaskInput']
+#    description = form_data['formGroupTaskDescription']
+#    status = 'not done'
+#    if request.form.get('priority'):
+#        priority = "high"
+#    else:
+#        priority = "low"
+#    date = form_data['start_date']
+#    conn = sqlite3.connect("static/db/to_do_list.db")
+#    c = conn.cursor()
+#    c.execute('INSERT INTO to_do_list(id, title, description, status, priority, start_date) VALUES(?,?,?,?,?,?)',(task_id, title, description, status, priority, date,))
+#    conn.commit()
+#    close_db(c, conn)
+#    return redirect("http://127.0.0.1:5000/", code=302)
 
 @app.errorhandler(404)
 def page_not_found(e):

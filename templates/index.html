@@ -145,13 +145,18 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              Are you sure you wish to delete this task?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">yes, delete</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">no, keep it</button>
-            </div>
+<form role="form" method="post" action="http://127.0.0.1:5000/v1/entries/tasks/delete">
+  <div class="modal-body">
+    Are you sure you wish to delete this task?
+  </div>
+  <div class="modal-footer">
+    <label for="formGroupTaskDescription">Description</label>
+    <input type="text" class="form-control form-control-sm" id="formGroupTaskDescription">
+
+    <button type="button" class="btn btn-danger" data-dismiss="modal">yes, delete</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">no, keep it</button>
+  </div>
+</form>
           </div>
         </div>
       </div>
