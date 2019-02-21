@@ -38,11 +38,28 @@ def create_task():
     end_date = '2019-02-21'
     c.execute("INSERT INTO to_do_list(id, title, description, status, priority, start_date, end_date) VALUES(?,?,?,?,?,?,?)",(task_id, title, description, status, priority, start_date, end_date,))
     conn.commit()
-    # close_db()
+    # close_db(conn, c)
     c.close
     conn.close
 
-create_task()
+@app.route("/v1/entries/tasks/all", methods=["GET"])
+def edit_task():
+    db_path = get_db()
+    conn, c = connect_db(db_path)
+    conn.row_factory = dict_factory
+    task_id = 3
+    title = 'Eat yoghurt'
+    description = 'Yoghurt in fridge'
+    status = 'not done'
+    priority = 'high'
+    start_date = '2019-02-21'
+    end_date = '2019-02-21'
+    c.execute("INSERT INTO to_do_list(id, title, description, status, priority, start_date, end_date) VALUES(?,?,?,?,?,?,?)",(task_id, title, description, status, priority, start_date, end_date,))
+    conn.commit()
+    c.close
+    conn.close
+    return jsonify(all_tasks)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
