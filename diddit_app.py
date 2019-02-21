@@ -19,10 +19,11 @@ def dict_factory(cursor, row):
 def home():     
     data = requests.get('http://127.0.0.1:5000/v1/entries/tasks/all').text
     response = json.loads(data)
-
+    today_html_block = []
+    future_html_block = []
     for task in response:
-        if task['end_date'] > datetime.datetime.today().strftime('%Y-%m-%d-%s'):
-            today_html_block = []
+        if task['end_date'] <= datetime.datetime.today().strftime('%Y-%m-%d'):
+            
             if task['priority'] == 'high':
                 html_block_template = '''<div class="single-task"><input name={} id={} class="strikethrough" type="checkbox">
                 <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal" style='color:red'>{}
@@ -35,7 +36,6 @@ def home():
                 </a></label></div>'''.format(task['id'], task['id'], task['title'])
                 today_html_block.append(Markup(html_block_template))
         else:
-            future_html_block = []
             if task['priority'] == 'high':
                 html_block_template = '''<div class="single-task"><input name={} id={} class="strikethrough" type="checkbox">
                 <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal" style='color:red'>{}
