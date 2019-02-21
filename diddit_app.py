@@ -24,11 +24,18 @@ def all_tasks():
     all_tasks = c.execute("SELECT * FROM to_do_list;").fetchall()
     return jsonify(all_tasks)
 
-@app.route("/v1/entries/tasks/create", methods=["POST"])
+# @app.route("/v1/entries/tasks/create", methods=["POST"])
 def create_task():
     db_path = get_db()
     conn, c = connect_db(db_path)
     conn.row_factory = dict_factory
+    id = 6
+    title = 'Eat yoghurt'
+    description = 'Yoghurt in fridge'
+    status = 'not done'
+    priority = 'high'
+    start_date = '2019-02-21'
+    end_date = '2019-02-21'
     c.execute("""INSERT INTO to_do_list(id, title, description, status, priority, start_date, end_date) VALUES(?, ?, ?, ?, ?, ?, ?), (id, title, description, status, priority, start_date, end_date)""")
     conn.commit()
     close_db()
