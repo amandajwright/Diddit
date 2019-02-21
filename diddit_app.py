@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 import sqlite3
 from diddit_funcs import *
 from db import *
@@ -24,20 +24,16 @@ def all_tasks():
     all_tasks = c.execute("SELECT * FROM to_do_list;").fetchall()
     return jsonify(all_tasks)
 
-# @app.route("/v1/entries/tasks/create", methods=["POST"])
+@app.route("/v1/entries/tasks/create", methods=["POST"])
 def create_task():
-    db_path = get_db()
-    conn, c = connect_db(db_path)
     form_data = request.form
     task_id = assign_task_id()
     title = form_data['formGroupTaskInput']
     description = form_data['formGroupTaskDescription']
-    status = 'not done'
-    priority = form_data['priority']
-    date = form_data['start_date']
-    c.execute("INSERT INTO to_do_list(id, title, description, status, priority, start_date) VALUES(?,?,?,?,?,?)",(task_id, title, description, status, priority, date,))
-    conn.commit()
-    close_db()
+#    status = 'not done'
+#    priority = form_data['priority']
+#    date = form_data['start_date']
+    get_data_from_db("INSERT INTO to_do_list(id, title, description) VALUES({},{},{})".format(task_id, title, description,))
     return redirect("http://127.0.0.1:5000/", code=302)
 
 @app.errorhandler(404)
