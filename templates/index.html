@@ -2,30 +2,32 @@
 <html lang="en-GB">
 
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
   <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-w+8Gqjk9Cuo6XH9HKHG5t5I1VR4YBNdPt/29vwgfZR485eoEJZ8rJRbm3TR32P6k" crossorigin="anonymous">
   <link rel="stylesheet" href="../static/css/custom.css">
-
   <title> diddit - get things done </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-  <div class="container splash col-xs-6 col-md-8">
-    <h1> diddit - get it did </h1>
-    <img src="../images/checklist.svg" alt="checklist">
-  </div>
-  <!--closes splash div-->
+  <div class="container splash col-xs-6 col-md-6">
+    <!-- <h1> diddit - get it did  </h1> -->
+    <img class="checklist-image" src="../images/checklist.png" alt="checklist image">
+    <img class="logo-image" src="../images/title.png" alt="Diddit logo">
 
+  </div> <!--closes splash div-->
+
+  <!-- New task trigger modal -->
   <div class="container main-page col-xs-6 col-md-8">
+    <button type="button" class="btn btn-lg btn-success addnewtaskbtn font-weight-bold" data-toggle="modal" data-target="#exampleModal"><i><span class="fa fa-plus-circle"></span></i> add a new task </button>
     <div class="full-task-list ">
       <!--    <label for="inputName" class="col-md-1 control-label">...</label>-->
       <h3 id="todaystasks" class="task-section-title"> tasks for today </h3>
       <div class="single-task"><input name="task-1" class="strikethrough" type="checkbox">
-        <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">buy milk (check to strike through the task)</a></label></div>
+        <label for="task-1" class="strikeThis font-weight-light"><a data-toggle="modal" href="#ViewTaskModal">buy milk (check to strike through the task)</a></label></div>
 
       <div class="single-task"><input name="task-2" class="strikethrough" type="checkbox">
         <label for="task-1" class="strikeThis importantTask"> <a data-toggle="modal" href="#ViewTaskModal">download anaconda</a></label></div>
@@ -44,25 +46,21 @@
     <!--closes form-group class-->
 
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal"><i><span class="fa fa-plus-circle"></span></i> add a new task </button>
-  
 
 
-    <!--change this to an icon-->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="NewTaskModalLabel">New task</h5>
+            <h5 class="modal-title font-weight-bold" id="NewTaskModalLabel">New task</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form role="form" method="post">
+            <form role="form" method="post" action="/v1/entries/tasks/cre">
               <div class="form-group">
                 <label for="formGroupTaskInput">Task:</label>
                 <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" placeholder="What do you need to do?">
@@ -84,7 +82,9 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save task</button>
+            <button type="button" class="btn btn-primary">Save task (old button)</button><!--must be a submit button-->
+            <input type="submit" class="btn btn-info btn-lg" value="Save task" name="submit" id="submit-button">
+
           </div>
           <!--closes modal footer -->
         </div>
