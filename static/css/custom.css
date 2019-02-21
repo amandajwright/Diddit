@@ -1,12 +1,20 @@
+body {
+  background-image: url("../images/threaded-dark-one.gif")
+  background: white;
+}
+
 p {
   color: white;
 }
 .importantTask{
-  color:red;
   font-weight: bold;
 }
-.single-task{
-  padding: 3% 0%
+.single-task {
+  padding: 1.5% 0%
+}
+
+.task-section-title{
+  padding-top: 4%;
 }
 .modal-backdrop {
    background-color: grey;
@@ -39,7 +47,6 @@ input[type=checkbox] {
 
 }
 .container{
-
   display: block;
   min-height: 70%
 }
@@ -47,10 +54,6 @@ input[type=checkbox] {
 .splash{
   background-color: white;
   min-height: 30%;
-}
-
-.full-task-list{
-
 }
 
 h1{
@@ -69,4 +72,5 @@ h1{
 .half-rule {
     width: 70%;
     border-top: 3px dotted white;
+    padding-bottom: 0%
  }

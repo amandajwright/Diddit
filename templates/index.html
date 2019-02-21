@@ -3,11 +3,12 @@
 
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../static/css/custom.css">
   <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-w+8Gqjk9Cuo6XH9HKHG5t5I1VR4YBNdPt/29vwgfZR485eoEJZ8rJRbm3TR32P6k" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/custom.css">
+
   <title> diddit - get things done </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -26,26 +27,23 @@
   <div class="container main-page col-xs-6 col-md-8">
     <div class="full-task-list ">
       <!--    <label for="inputName" class="col-md-1 control-label">...</label>-->
-      <h3 id="todaystasks"> tasks for today </h3>
+      <h3 id="todaystasks" class="task-section-title"> tasks for today </h3>
       <div class="single-task"><input name="task-1" class="strikethrough" type="checkbox">
         <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">buy milk (check to strike through the task)</a></label></div>
 
-      <div><input name="task-2" class="strikethrough" type="checkbox">
+      <div class="single-task"><input name="task-2" class="strikethrough" type="checkbox">
         <label for="task-1" class="strikeThis importantTask"> <a data-toggle="modal" href="#ViewTaskModal">download anaconda</a></label></div>
 
       <hr class="half-rule">
-      <h3 id="upcoming_tasks"> tasks for the future </h3>
-      <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
-        <label for="task-1" class="strikeThis"> task 3 </label></div>
-      <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
-        <label for="task-1" class="strikeThis">download anaconda</label></div>
 
-    <hr class="half-rule">
-    <h3 id="upcoming_tasks"> tasks for the future </h3>
-    <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
-      <label for="task-1" class="strikeThis"> task 3 </label></div>
-    <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
-      <label for="task-1" class="strikeThis">task 4 - important </label></div>
+        <h3 id="futuretasks" class="task-section-title"> tasks for 25/02/19 </h3>
+        <div class="single-task"><input name="task-3" class="strikethrough" type="checkbox">
+          <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">push to git </a></label></div>
+
+        <div class="single-task"><input name="task-2" class="strikethrough" type="checkbox">
+          <label for="task-1" class="strikeThis importantTask"> <a data-toggle="modal" href="#ViewTaskModal">download anaconda</a></label></div>
+          <div class="single-task"><input name="task-2" class="strikethrough" type="checkbox">
+            <label for="task-1" class="strikeThis"> <a data-toggle="modal" href="#ViewTaskModal">go to codebar</a></label></div>
       </div> <!--closes form-group class-->
 
 
@@ -80,7 +78,7 @@
               <div>
                 <!--div for datepicker-->
                 <label class="control-label" for="date">Due by:</label>
-                <input id="datepicker">
+                <input class="datepicker">
               </div>
               <!--closes datepicker div-->
             </form>
@@ -121,17 +119,18 @@
             <div>
               <!--div for datepicker-->
               <label class="control-label" for="date">Due by:</label>
-              <input class="datepicker" />
+              <input class="datepicker">
             </div>
             <!--closes datepicker div-->
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info btn-lg"><i><span class="far fa-calendar-check icon-large"></span></i> diddit</button>
-          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ConfirmDeleteModal"><i><span class="fas fa-trash-alt"></span></i> delete </button>
+          <button type="button" class="btn btn-success btn-lg"><i><span class="far fa-calendar-check icon-large"></span></i> diddit</button>
+
 
           <button type="button" class="btn btn-info btn-lg"><i><span class="far fa-check-circle"></span></i> save </button>
-          <button type="button" class="btn btn-info btn-lg"><i><span class="far fa-arrow-alt-circle-left"></span></i> back </button>
+          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#ConfirmDeleteModal"><i><span class="fas fa-trash-alt"></span></i> delete </button>
+          <button type="button" class="btn btn-secondary btn-lg"><i><span class="far fa-arrow-alt-circle-left"></span></i> back </button>
         </div>
         <!--closes modal footer -->
       </div>
@@ -152,7 +151,7 @@
               Are you sure you wish to delete this task?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger">yes, delete</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">yes, delete</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">no, keep it</button>
 
             </div>
