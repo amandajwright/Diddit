@@ -64,7 +64,7 @@ def list_all_db():
 		except Exception as e:
 			print(e)
 		
-def close_db():
+def close_db(connection, cursor):
 	c.close()
 	conn.close()
 
@@ -72,5 +72,4 @@ if __name__ == '__main__':
 	db_path = get_db()
 	conn, c = connect_db(db_path)
 	create_db(db_path, conn, c)
-	c.close()
-	conn.close()
+	close_db(conn, c)
