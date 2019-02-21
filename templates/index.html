@@ -62,14 +62,14 @@
             </button>
           </div>
           <div class="modal-body">
-            <form role="form" method="post">
+            <form role="form" method="post" action="http://127.0.0.1:5000/v1/entries/tasks/create">
               <div class="form-group">
                 <label for="formGroupTaskInput">Task:</label>
-                <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" placeholder="What do you need to do?">
+                <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" name="formGroupTaskInput" placeholder="What do you need to do?">
               </div>
               <div class="form-group">
                 <label for="formGroupTaskDescription">Description</label>
-                <input type="text" class="form-control form-control-sm" id="formGroupTaskDescription">
+                <input type="text" class="form-control form-control-sm" id="formGroupTaskDescription" name="formGroupTaskDescription">
               </div>
               <div class="checkbox d-flex justify-content-center">
                 <label><input type="checkbox" name="priority"> Mark as important </label>
@@ -81,11 +81,11 @@
                 <input class="datepicker">
               </div>
               <!--closes datepicker div-->
-            </form>
+              <div class="modal-footer">
+                <input type="submit" value="Submit" name="submit" class="submit-button"></form><button type="button" class="btn btn-primary">Save task</button>
+              </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save task</button>
-          </div>
+
           <!--closes modal footer -->
         </div>
       </div>
@@ -106,7 +106,7 @@
         <div class="modal-body"><form role="form" method="post">
             <div class="form-group">
               <label for="formGroupTaskInput">Task:</label>
-              <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" placeholder="What do you need to do?">
+              <input type="text" class="form-control form-control-lg" placeholder="What do you need to do?">
             </div>
             <div class="form-group">
               <label for="formGroupTaskDescription">Description</label>
