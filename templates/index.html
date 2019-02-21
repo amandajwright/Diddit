@@ -15,7 +15,7 @@
 <body>
   <div class="container splash col-xs-6 col-md-8">
     <h1> diddit - get things done </h1>
-    <img src="../static/images/checklist.svg" 
+    <img src="../static/images/checklist.svg"
     alt="triangle with all three sides equal"
     height="87px"
     width="100px" />
@@ -38,16 +38,24 @@
       <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
         <label for="task-1" class="strikeThis"> task 3 </label></div>
       <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
-        <label for="task-1" class="strikeThis">task 4 - important </label></div>
+        <label for="task-1" class="strikeThis">download anaconda</label></div>
 
-    </div>
-    <!--closes form-group class-->
+    <hr class="half-rule">
+    <h3 id="upcoming_tasks"> tasks for the future </h3>
+    <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
+      <label for="task-1" class="strikeThis"> task 3 </label></div>
+    <div><input name="task-1" class="strikethrough" value="1" type="checkbox">
+      <label for="task-1" class="strikeThis">task 4 - important </label></div>
+      </div> <!--closes form-group class-->
 
-    <!-- New Task Button trigger modal -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NewTaskModal"><i class="far fa-calendar-plus"></i> new task </button>
 
-    <!-- New Task Modal -->
-    <div class="modal fade" id="NewTaskModal" tabindex="-1" role="dialog" aria-labelledby="NewTaskModalLabel" aria-hidden="true">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      add a new task
+    </button><!--change this to an icon-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
