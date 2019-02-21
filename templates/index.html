@@ -21,6 +21,7 @@
 <!--    <h2 class="float-right"> task view</h2>-->
     <h3 id="todaystasks"> tasks for today </h3>
 
+<p id='api-resp'></p>
 
     <div class="form-group col-xs-6 col-md-8">
   <!--    <label for="inputName" class="col-md-1 control-label">...</label>-->
@@ -87,6 +88,11 @@
   </div>
   <!--closes main container div-->
 </body>
+<script>
+fetch('http://127.0.0.1:5000/v1/entries/tasks/all')
+  .then(response => response.json())
+  .then(json => document.getElementById('api-resp').innerHTML = JSON.stringify(json))
+</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
