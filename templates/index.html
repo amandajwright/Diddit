@@ -28,6 +28,13 @@
     <div class="full-task-list ">
       <!--    <label for="inputName" class="col-md-1 control-label">...</label>-->
       <h3 id="todaystasks" class="task-section-title"> tasks for today </h3>
+      {% if tasks %}
+      {% for task in tasks %}
+
+      {{ task }}
+
+      {% endfor %}
+      {% endif %}
       <div class="single-task"><input name="task-1" class="strikethrough" type="checkbox">
         <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">buy milk (check to strike through the task)</a></label></div>
 

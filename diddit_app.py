@@ -3,6 +3,7 @@ import sqlite3
 from diddit_funcs import *
 from db import *
 import requests
+import json
 
 app=Flask(__name__)
 
@@ -14,7 +15,15 @@ def dict_factory(cursor, row):
 
 @app.route("/", methods=["GET", "POST"])
 def home():     
-    return render_template("index.html")
+    data = requests.get('http://127.0.0.1:5000/v1/entries/tasks/all').text
+    response = json.loads(data)
+    tasks = [task['title'] for task in response]
+    task_ids = [task['id'] for task in response]
+
+        # <div class="single-task"><input name="task-1" class="strikethrough" type="checkbox">
+        # <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">buy milk (check to strike through the task)</a></label></div>
+
+    return render_template("index.html", tasks=tasks)
 
 @app.route("/v1/entries/tasks/all", methods=["GET"])
 def all_tasks():      
@@ -41,24 +50,6 @@ def create_task():
     # close_db(conn, c)
     c.close
     conn.close
-
-@app.route("/v1/entries/tasks/all", methods=["GET"])
-def edit_task():
-    db_path = get_db()
-    conn, c = connect_db(db_path)
-    conn.row_factory = dict_factory
-    task_id = 3
-    title = 'Eat yoghurt'
-    description = 'Yoghurt in fridge'
-    status = 'not done'
-    priority = 'high'
-    start_date = '2019-02-21'
-    end_date = '2019-02-21'
-    c.execute("INSERT INTO to_do_list(id, title, description, status, priority, start_date, end_date) VALUES(?,?,?,?,?,?,?)",(task_id, title, description, status, priority, start_date, end_date,))
-    conn.commit()
-    c.close
-    conn.close
-    return jsonify(all_tasks)
 
 
 @app.errorhandler(404)
