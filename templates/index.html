@@ -28,29 +28,22 @@
     <div class="full-task-list ">
       <!--    <label for="inputName" class="col-md-1 control-label">...</label>-->
       <h3 id="todaystasks" class="task-section-title"> tasks for today </h3>
-      {% if tasks %}
-      {% for task in tasks %}
-
+      {% if today_html_block %}
+      {% for task in today_html_block %}
       {{ task }}
-
       {% endfor %}
       {% endif %}
-      <div class="single-task"><input name="task-1" class="strikethrough" type="checkbox">
-        <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">buy milk (check to strike through the task)</a></label></div>
-
-      <div class="single-task"><input name="task-2" class="strikethrough" type="checkbox">
-        <label for="task-1" class="strikeThis importantTask"> <a data-toggle="modal" href="#ViewTaskModal">download anaconda</a></label></div>
 
       <hr class="half-rule">
 
-        <h3 id="futuretasks" class="task-section-title"> tasks for 25/02/19 </h3>
-        <div class="single-task"><input name="task-3" class="strikethrough" type="checkbox">
-          <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">push to git </a></label></div>
+        <h3 id="futuretasks" class="task-section-title"> tasks for another day </h3>
 
-        <div class="single-task"><input name="task-2" class="strikethrough" type="checkbox">
-          <label for="task-1" class="strikeThis importantTask"> <a data-toggle="modal" href="#ViewTaskModal">download anaconda</a></label></div>
-          <div class="single-task"><input name="task-2" class="strikethrough" type="checkbox">
-            <label for="task-1" class="strikeThis"> <a data-toggle="modal" href="#ViewTaskModal">go to codebar</a></label></div>
+        {% if future_html_block %}
+        {% for task in future_html_block %}
+        {{ task }}
+        {% endfor %}
+        {% endif %}
+
       </div> <!--closes form-group class-->
 
     <!-- Button trigger modal -->
