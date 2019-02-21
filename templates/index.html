@@ -18,7 +18,8 @@
     <img class="checklist-image" src="../images/checklist.png" alt="checklist image">
     <img class="logo-image" src="../images/title.png" alt="Diddit logo">
 
-  </div> <!--closes splash div-->
+  </div>
+  <!--closes splash div-->
 
   <!-- New task trigger modal -->
   <div class="container main-page col-xs-6 col-md-8">
@@ -75,14 +76,15 @@
               <div>
                 <!--div for datepicker-->
                 <div>
-                <label class="control-label" for="date">Due by:</label>
-                <input class="datepicker">
-              </div>
-              <!--closes datepicker div-->
+                  <label class="control-label" for="date">Due by:</label>
+                  <input class="datepicker">
+                </div>
+                <!--closes datepicker div-->
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save task (old button)</button><!--must be a submit button-->
+            <button type="button" class="btn btn-primary">Save task (old button)</button>
+            <!--must be a submit button-->
             <input type="submit" class="btn btn-info btn-lg" value="Save task" name="submit" id="submit-button">
 
           </div>
@@ -103,10 +105,11 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body"><form role="form" method="post">
+        <div class="modal-body">
+          <form role="form" method="post">
             <div class="form-group">
               <label for="formGroupTaskInput">Task:</label>
-              <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" placeholder="What do you need to do?">
+              <input type="text" class="form-control form-control-lg" id="formGroupTaskInput">
             </div>
             <div class="form-group">
               <label for="formGroupTaskDescription">Description</label>
@@ -118,14 +121,11 @@
             <!--DATEPICKER-->
             <label for="start">Due by:</label>
 
-  <input type="date" id="deadline" name="deadline"
-         value="2019-02-21"
-         min="2018-01-01" max="2020-12-31">
-       <!--closes datepicker-->
-
-
+            <input type="date" id="deadline" name="deadline" value="2019-02-21" min="2018-01-01" max="2020-12-31">
             <!--closes datepicker div-->
-          </form> </div><!--closes form-->
+          </form>
+        </div>
+        <!--closes form-->
         <div class="modal-footer">
           <button type="button" data-dismiss="modal" class="btn btn-success btn-lg"><i><span class="far fa-calendar-check icon-large"></span></i> diddit</button>
           <button type="button" data-dismiss="modal" class="btn btn-info btn-lg"><i><span class="far fa-check-circle"></span></i> save </button>
@@ -133,28 +133,31 @@
           <button type="button" data-dismiss="modal" class="btn btn-secondary btn-lg"><i><span class="far fa-arrow-alt-circle-left"></span></i> back </button>
         </div>
         <!--closes modal footer -->
-      </div></div></div><!--closes view task modal -->
+      </div>
+    </div>
+  </div>
+  <!--closes view task modal -->
 
-      <!-- Confirm Delete Modal -->
-      <div class="modal fade" id="ConfirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Confirm delete</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Are you sure you wish to delete this task?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">yes, delete</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">no, keep it</button>
-            </div>
-          </div>
+  <!-- Confirm Delete Modal -->
+  <div class="modal fade" id="ConfirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you wish to delete this task?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">yes, delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">no, keep it</button>
         </div>
       </div>
+    </div>
+  </div>
 
 
 </body>
