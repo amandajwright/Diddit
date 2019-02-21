@@ -48,7 +48,14 @@
 
 
 
+<<<<<<< HEAD
 
+=======
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      add a new task
+    </button><!--change this to an icon-->
+>>>>>>> master
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -75,11 +82,11 @@
               </div>
               <div>
                 <!--div for datepicker-->
-                <div>
-                  <label class="control-label" for="date">Due by:</label>
-                  <input class="datepicker">
-                </div>
-                <!--closes datepicker div-->
+                <label class="control-label" for="date">Due by:</label>
+                <input id="datepicker">
+              </div>
+              <!--closes datepicker div-->
+
             </form>
           </div>
           <div class="modal-footer">
@@ -161,6 +168,15 @@
 
 
 </body>
+<<<<<<< HEAD
+=======
+<script>
+fetch('http://127.0.0.1:5000/v1/entries/tasks/all')
+  .then(response => response.json())
+  .then(json => document.getElementById('api-resp').innerHTML = JSON.stringify(json))
+</script>
+
+>>>>>>> master
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
