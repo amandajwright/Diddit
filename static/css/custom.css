@@ -7,8 +7,14 @@ p {
 }
 .single-task{
   padding: 3% 0%
-
 }
+.modal-backdrop {
+   background-color: grey;
+}
+.delete-task-footer{
+  text-align: center;
+}
+
 a {
   color: inherit;
 }
@@ -33,22 +39,24 @@ input[type=checkbox] {
 
 }
 .container{
-  background-color: lightblue;
+
   display: block;
   min-height: 70%
 }
 
 .splash{
-  background-color: darkblue;
-  margin-top: 3%;
+  background-color: white;
+  min-height: 30%;
 }
 
 .full-task-list{
-  margin-top: 10%;
+
 }
 
 h1{
   color: darkgreen;
+  text-align: center;
+  padding: 4% 0%;
 }
 
 .strikethrough:checked + .strikeThis {
