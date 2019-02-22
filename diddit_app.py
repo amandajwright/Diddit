@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 import sqlite3
 from diddit_funcs import *
 from db import *
@@ -17,7 +17,7 @@ def dict_factory(cursor, row):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    data = requests.get('http://127.0.0.1:5000/v1/entries/tasks/all').text
+    data = requests.get('http://127.0.0.1:5000/v1/tasks/all').text
     response = json.loads(data)
     today_html_block = []
     future_html_block = []
@@ -75,7 +75,7 @@ def mark_done(task_id):
     finally:
         return jsonify(response) 
     
-# @app.route("/v1/entries/tasks/create", methods=["POST"])
+@app.route("/v1/tasks/create", methods=["POST"])
 def create_task():
    form_data = request.form
    task_id = assign_task_id()
