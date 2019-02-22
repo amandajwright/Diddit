@@ -64,25 +64,25 @@
             <form role="form" method="post" action="/v1/tasks/create">
               <div class="form-group">
                 <label for="formGroupTaskInput">Task:</label>
-                <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" placeholder="What do you need to do?">
+                <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" name="formGroupTaskInput" placeholder="What do you need to do?">
               </div>
               <div class="form-group">
                 <label for="formGroupTaskDescription">Description</label>
-                <input type="text" class="form-control form-control-sm" id="formGroupTaskDescription">
+                <input type="text" class="form-control form-control-sm" id="formGroupTaskDescription" name="formGroupTaskDescription">
               </div>
               <div class="checkbox d-flex justify-content-center">
-                <label><input type="checkbox" name="priority"> Mark as important </label>
+                <label><input type="checkbox" id="priority" name="priority"> Mark as important </label>
               </div>
-              <div>
+
                 <!--div for datepicker-->
-                <label class="control-label" for="date">Due by:</label>
-                <input id="datepicker" name="start_date">
-              </div>
-              <!--closes datepicker div-->
+                <div>
+                  <label for="start">Due by:</label>
+                  <input type="date" id="deadline" name="start_date" value="2019-02-22" min="2019-02-22" max="2020-12-31">
+                </div>
+                <!--closes datepicker div-->
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save task (old button)</button>
                 <!--must be a submit button-->
-                <input type="submit" class="btn btn-info btn-lg" value="Save task" name="submit" id="submit-button">
+                <input type="submit" value="Submit" name="submit" class="submit-button btn btn-info btn-lg">
 
               </div>
             </form>
@@ -108,12 +108,11 @@
           <form role="form" method="post">
             <div class="form-group">
               <label for="formGroupTaskInput">Task:</label>
-              <input type="text" class="form-control form-control-lg" id="formGroupTaskInput">
+              <input type="text" class="form-control form-control-lg" id="formGroupTaskInputEdit" name="formGroupTaskInputEdit">
             </div>
             <div class="form-group">
               <label for="formGroupTaskDescription">Description</label>
-              <input type="text" class="form-control form-control-sm" id="formGroupTaskDescription">
-            </div>
+<input type="text" class="form-control form-control-sm" id="formGroupTaskDescription" name="formGroupTaskDescription">            </div>
             <div class="checkbox d-flex justify-content-center">
               <label><input type="checkbox"> Mark as important </label>
             </div>

@@ -13,7 +13,7 @@ def check_db(db_path):
     
 def get_db():
     try:
-        conn = sqlite3.connect("to_do_list.db")
+        conn = sqlite3.connect("static/db/to_do_list.db")
         c = conn.cursor()
         return conn, c
     except:
@@ -36,7 +36,7 @@ def get_data_from_db(query):
 #     return title_change
 
 def assign_task_id():
-   all_task_ids = get_data_from_db("SELECT id FROM to_do_list")
-   latest_task = max(all_task_ids)
-   new_task_id = latest_task[0] + 1
-   return new_task_id
+    all_task_ids = get_data_from_db("SELECT id FROM to_do_list")
+    latest_task = max(all_task_ids)
+    new_task_id = latest_task[0] + 1
+    return new_task_id

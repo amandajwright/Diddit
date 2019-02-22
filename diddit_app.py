@@ -22,7 +22,7 @@ def home():
     today_html_block = []
     future_html_block = []
     for task in response:
-        if task['end_date'] <= datetime.datetime.today().strftime('%Y-%m-%d'):
+        if task['end_date'] == None or task['end_date'] <= datetime.datetime.today().strftime('%Y-%m-%d'):
 
             if task['priority'] == 'high':
                 html_block_template = '''<div class="single-task"><input name={} id={} class="strikethrough" type="checkbox">
@@ -80,6 +80,7 @@ def create_task():
    form_data = request.form
    task_id = assign_task_id()
    title = form_data['formGroupTaskInput']
+   print(title)
    description = form_data['formGroupTaskDescription']
    status = 'not done'
    if request.form.get('priority'):
@@ -91,7 +92,8 @@ def create_task():
    c = conn.cursor()
    c.execute('INSERT INTO to_do_list(id, title, description, status, priority, start_date) VALUES(?,?,?,?,?,?)',(task_id, title, description, status, priority, date,))
    conn.commit()
-   close_db(c, conn)
+   c.close()
+   conn.close()
    return redirect("http://127.0.0.1:5000/", code=302)
 
 
