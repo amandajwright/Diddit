@@ -63,7 +63,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form role="form" method="post" action="/v1/entries/tasks/cre">
+            <form role="form" method="post" action="/v1/entries/tasks/create">
               <div class="form-group">
                 <label for="formGroupTaskInput">Task:</label>
                 <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" placeholder="What do you need to do?">
@@ -78,19 +78,18 @@
               <div>
                 <!--div for datepicker-->
                 <label class="control-label" for="date">Due by:</label>
-                <input id="datepicker">
+                <input id="datepicker" name="start_date">
               </div>
               <!--closes datepicker div-->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save task (old button)</button>
+                <!--must be a submit button-->
+                <input type="submit" class="btn btn-info btn-lg" value="Save task" name="submit" id="submit-button">
 
+              </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save task (old button)</button>
-            <!--must be a submit button-->
-            <input type="submit" class="btn btn-info btn-lg" value="Save task" name="submit" id="submit-button">
-
-          </div>
-          <!--closes modal footer -->
+                    <!--closes modal footer -->
         </div>
       </div>
     </div>
