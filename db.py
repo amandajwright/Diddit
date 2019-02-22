@@ -59,11 +59,12 @@ def list_all_db():
 			# cursor.execute(query)
 			c.execute('SELECT * FROM to_do_list')
 			list_all = c.fetchall()
-			close_db()
+			close_db(conn, c)
 			return list_all
 		except Exception as e:
 			print(e)
-		
+
+
 def close_db(connection, cursor):
 	c.close()
 	conn.close()

@@ -50,7 +50,7 @@ def home():
 
     return render_template("index.html", today_html_block=today_html_block, future_html_block=future_html_block)
 
-@app.route("/v1/entries/tasks/all", methods=["GET"])
+@app.route("/v1/tasks/all", methods=["GET"])
 def all_tasks():      
     conn = sqlite3.connect("static/db/to_do_list.db")
     conn.row_factory = dict_factory
@@ -58,6 +58,23 @@ def all_tasks():
     all_tasks = c.execute("SELECT * FROM to_do_list;").fetchall()
     return jsonify(all_tasks)
 
+@app.route("/v1/tasks/<float:task_id>/done", methods=["PATCH","GET"])
+def mark_done(task_id):
+    response = {'status code': 500}
+    try:
+        conn = sqlite3.connect("static/db/to_do_list.db")
+        c = conn.cursor()
+        print('woo')
+        query = "UPDATE to_do_list SET status='done' WHERE id=?"
+        c.execute(query, (task_id,))
+        conn.commit()
+        response['status code'] = 200
+    except sqlite3.Error as e:
+        response['status code'] = 500
+        print(e)
+    finally:
+        return jsonify(response) 
+    
 # @app.route("/v1/entries/tasks/create", methods=["POST"])
 def create_task():
     db_path = get_db()
