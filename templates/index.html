@@ -2,29 +2,28 @@
 <html lang="en-GB">
 
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
   <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-w+8Gqjk9Cuo6XH9HKHG5t5I1VR4YBNdPt/29vwgfZR485eoEJZ8rJRbm3TR32P6k" crossorigin="anonymous">
   <link rel="stylesheet" href="../static/css/custom.css">
-
   <title> diddit - get things done </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-  <div class="container splash col-xs-6 col-md-8">
-    <h1> diddit - get things done </h1>
-    <img src="../static/images/checklist.svg"
-    alt="triangle with all three sides equal"
-    height="87px"
-    width="100px" />
+  <div class="container splash col-xs-6 col-md-6">
+    <!-- <h1> diddit - get it did  </h1> -->
+    <img class="checklist-image" src="../images/checklist.png" alt="checklist image">
+    <img class="logo-image" src="../images/title.png" alt="Diddit logo">
 
   </div>
   <!--closes splash div-->
 
+  <!-- New task trigger modal -->
   <div class="container main-page col-xs-6 col-md-8">
+    <button type="button" class="btn btn-lg btn-success addnewtaskbtn font-weight-bold" data-toggle="modal" data-target="#exampleModal"><i><span class="fa fa-plus-circle"></span></i> add a new task </button>
     <div class="full-task-list ">
       <!--    <label for="inputName" class="col-md-1 control-label">...</label>-->
       <h3 id="todaystasks" class="task-section-title"> tasks for today </h3>
@@ -46,46 +45,51 @@
 
       </div> <!--closes form-group class-->
 
+=======
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
       add a new task
     </button><!--change this to an icon-->
+>>>>>>> master
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="NewTaskModalLabel">New task</h5>
+            <h5 class="modal-title font-weight-bold" id="NewTaskModalLabel">New task</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form role="form" method="post">
+            <form role="form" method="post" action="/v1/entries/tasks/create">
               <div class="form-group">
                 <label for="formGroupTaskInput">Task:</label>
                 <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" placeholder="What do you need to do?">
               </div>
               <div class="form-group">
                 <label for="formGroupTaskDescription">Description</label>
-                <input type="text" class="form-control form-control-sm" height="200" id="formGroupTaskDescription">
+                <input type="text" class="form-control form-control-sm" id="formGroupTaskDescription">
               </div>
               <div class="checkbox d-flex justify-content-center">
-                <label><input type="checkbox"> Mark as important </label>
+                <label><input type="checkbox" name="priority"> Mark as important </label>
               </div>
               <div>
                 <!--div for datepicker-->
                 <label class="control-label" for="date">Due by:</label>
-                <input id="datepicker">
+                <input id="datepicker" name="start_date">
               </div>
               <!--closes datepicker div-->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save task (old button)</button>
+                <!--must be a submit button-->
+                <input type="submit" class="btn btn-info btn-lg" value="Save task" name="submit" id="submit-button">
+
+              </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save task</button>
-          </div>
-          <!--closes modal footer -->
+                    <!--closes modal footer -->
         </div>
       </div>
     </div>
@@ -106,64 +110,80 @@
           <form role="form" method="post">
             <div class="form-group">
               <label for="formGroupTaskInput">Task:</label>
-              <input type="text" class="form-control form-control-lg" id="formGroupTaskInput" placeholder="What do you need to do?">
+              <input type="text" class="form-control form-control-lg" id="formGroupTaskInput">
             </div>
             <div class="form-group">
               <label for="formGroupTaskDescription">Description</label>
-              <input type="text" class="form-control form-control-sm" height="200" id="formGroupTaskDescription">
+              <input type="text" class="form-control form-control-sm" id="formGroupTaskDescription">
             </div>
             <div class="checkbox d-flex justify-content-center">
               <label><input type="checkbox"> Mark as important </label>
             </div>
-            <div>
-              <!--div for datepicker-->
-              <label class="control-label" for="date">Due by:</label>
-              <input class="datepicker">
-            </div>
+            <!--DATEPICKER-->
+            <label for="start">Due by:</label>
+
+            <input type="date" id="deadline" name="deadline" value="2019-02-21" min="2018-01-01" max="2020-12-31">
             <!--closes datepicker div-->
           </form>
         </div>
+        <!--closes form-->
         <div class="modal-footer">
-          <button type="button" class="btn btn-success btn-lg"><i><span class="far fa-calendar-check icon-large"></span></i> diddit</button>
-
-
-          <button type="button" class="btn btn-info btn-lg"><i><span class="far fa-check-circle"></span></i> save </button>
+          <button type="button" data-dismiss="modal" class="btn btn-success btn-lg"><i><span class="far fa-calendar-check icon-large"></span></i> diddit</button>
+          <button type="button" data-dismiss="modal" class="btn btn-info btn-lg"><i><span class="far fa-check-circle"></span></i> save </button>
           <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#ConfirmDeleteModal"><i><span class="fas fa-trash-alt"></span></i> delete </button>
-          <button type="button" class="btn btn-secondary btn-lg"><i><span class="far fa-arrow-alt-circle-left"></span></i> back </button>
+          <button type="button" data-dismiss="modal" class="btn btn-secondary btn-lg"><i><span class="far fa-arrow-alt-circle-left"></span></i> back </button>
         </div>
         <!--closes modal footer -->
       </div>
+    </div>
+  </div>
+  <!--closes view task modal -->
 
-
-
-      <!-- Confirm Delete Modal -->
-      <div class="modal fade" id="ConfirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Confirm delete</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Are you sure you wish to delete this task?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">yes, delete</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">no, keep it</button>
-
-            </div>
-          </div>
+  <!-- Confirm Delete Modal -->
+  <div class="modal fade" id="ConfirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you wish to delete this task?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">yes, delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">no, keep it</button>
         </div>
       </div>
+    </div>
+  </div>
 
+<<<<<<< HEAD
+
+</body>
+<<<<<<< HEAD
+=======
+<script>
+fetch('http://127.0.0.1:5000/v1/entries/tasks/all')
+  .then(response => response.json())
+  .then(json => document.getElementById('api-resp').innerHTML = JSON.stringify(json))
+</script>
+
+>>>>>>> master
+=======
+>>>>>>> 61b1cffd8a760704588b37fec61db7f327d958d7
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script type="text/javascript" src="../static/js/engine.js"></script>
 <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
-      
-      
+<<<<<<< HEAD
+
+=======
+
+
 </body>
+>>>>>>> 61b1cffd8a760704588b37fec61db7f327d958d7
 </html>

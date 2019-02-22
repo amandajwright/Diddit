@@ -1,6 +1,5 @@
-body {
-  background-image: url("../images/threaded-dark-one.gif")
-  background: white;
+h3{
+  color: pink;
 }
 
 p {
@@ -23,7 +22,7 @@ p {
   text-align: center;
 }
 
-a {
+a, a:active {
   color: inherit;
 }
 a:link {
@@ -37,29 +36,43 @@ label{
 a:hover {
   font-weight: bold;
 }
-a:active {
-  color: inherit;
-}
 
 input[type=checkbox] {
   transform: scale(2.0);
   margin-right: 5%;
-
 }
 .container{
   display: block;
   min-height: 70%
 }
 
+.checklist-image {
+  width: 20%;
+  /* position: absolute; */
+	top: 1%;
+  display: inline;
+}
+
+.logo-image{
+  display: inline;
+  height: 100%;
+  position: relative;
+	top: 0;
+	left: 0;
+}
 .splash{
-  background-color: white;
-  min-height: 30%;
+  margin-bottom: 5%;
+  margin-top: 3%;
+}
+
+.addnewtaskbtn{
+  margin: 2%;
 }
 
 h1{
-  color: darkgreen;
-  text-align: center;
-  padding: 4% 0%;
+  color: lightblue;
+  display: inline;
+
 }
 
 .strikethrough:checked + .strikeThis {
