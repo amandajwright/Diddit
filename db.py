@@ -38,7 +38,7 @@
 #	if check_db(db_path):
 #		try:
 #			conn, c = connect_db(db_path)
-#			# db_path = 
+#			# db_path =
 #			# query = 'FROM {} SELECT *'.format(db_path)
 #			# cursor.execute(query)
 #			c.execute('PRAGMA table_info(to_do_list);')
@@ -54,7 +54,7 @@
 #	if check_db(db_path):
 #		try:
 #			conn, c = connect_db(db_path)
-#			# db_path = 
+#			# db_path =
 #			# query = 'FROM {} SELECT *'.format(db_path)
 #			# cursor.execute(query)
 #			c.execute('SELECT * FROM to_do_list')
@@ -63,7 +63,7 @@
 #			return list_all
 #		except Exception as e:
 #			print(e)
-#		
+#
 #def close_db():
 #	c.close()
 #	conn.close()

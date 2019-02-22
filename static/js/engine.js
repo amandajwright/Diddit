@@ -2,8 +2,7 @@ $(document).ready(function() {
 
   $('.datepicker').datepicker();
 
-
-// $('.datepicker').datepicker({
-//             uiLibrary: 'bootstrap4'
-//         });
+$('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
 });

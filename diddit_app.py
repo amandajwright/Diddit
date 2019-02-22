@@ -13,11 +13,11 @@ def dict_factory(cursor, row):
     return d
 
 @app.route("/", methods=["GET", "POST"])
-def home():     
+def home():
     return render_template("index.html")
 
 @app.route("/v1/entries/tasks/all", methods=["GET"])
-def all_tasks():      
+def all_tasks():
     conn = sqlite3.connect("static/db/to_do_list.db")
     conn.row_factory = dict_factory
     c = conn.cursor()
@@ -91,10 +91,10 @@ def tasks_filter():
     title = query_parameters.get("title")
     status = query_parameters.get("status")
     importance = query_parameters.get("importance")
-    
+
     query = "SELECT * FROM to_do_list WHERE"
     to_filter = []
-    
+
     if id:
         query += " id=? AND"
         to_filter.append(id)
@@ -109,17 +109,17 @@ def tasks_filter():
         to_filter.append(importance)
     if not (id or title or status or importance):
         return page_not_found(404)
-    
+
     query = query[:-4] + ";"
-    
+
     conn = sqlite3.connect("to_do_list.db")
     conn.row_factory = dict_factory
     c = conn.cursor()
-    
+
     results = c.execute(query, to_filter).fetchall()
-    
+
     return jsonify(results)
-        
+
 @app.route("/v1/entries/tasks/<int:id>", methods=["GET"])
 def filter_by_id():
     sql_statement = "SELECT * FROM to_do_list WHERE id = {}".format(id)
@@ -142,4 +142,4 @@ if __name__ == "__main__":
 #    def post(self, id, title, status, importance):
 #        conn = db_connect.connect()
 #        query = conn.execute("INSERT INTO to_do_list(id, title, status, importance) VALUES (?, ?, ?, ?, ?, ?)", (id, title, status, importance,))
-#        
+#
