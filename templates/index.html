@@ -27,28 +27,23 @@
     <div class="full-task-list ">
       <!--    <label for="inputName" class="col-md-1 control-label">...</label>-->
       <h3 id="todaystasks" class="task-section-title"> tasks for today </h3>
-      <div class="single-task"><input name="task-1" class="strikethrough" type="checkbox">
-        <label for="task-1" class="strikeThis font-weight-light"><a data-toggle="modal" href="#ViewTaskModal">buy milk (check to strike through the task)</a></label></div>
-
-      <div class="single-task"><input name="task-2" class="strikethrough" type="checkbox">
-        <label for="task-1" class="strikeThis importantTask"> <a data-toggle="modal" href="#ViewTaskModal">download anaconda</a></label></div>
+      {% if today_html_block %}
+      {% for task in today_html_block %}
+      {{ task }}
+      {% endfor %}
+      {% endif %}
 
       <hr class="half-rule">
 
-      <h3 id="futuretasks" class="task-section-title"> tasks for 25/02/19 </h3>
-      <div class="single-task"><input name="task-3" class="strikethrough" type="checkbox">
-        <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">push to git </a></label></div>
+        <h3 id="futuretasks" class="task-section-title"> tasks for another day </h3>
 
-      <div class="single-task"><input name="task-2" class="strikethrough" type="checkbox">
-        <label for="task-1" class="strikeThis importantTask"> <a data-toggle="modal" href="#ViewTaskModal">download anaconda</a></label></div>
-      <div class="single-task"><input name="task-2" class="strikethrough" type="checkbox">
-        <label for="task-1" class="strikeThis"> <a data-toggle="modal" href="#ViewTaskModal">go to codebar</a></label></div>
-    </div>
-    <!--closes form-group class-->
+        {% if future_html_block %}
+        {% for task in future_html_block %}
+        {{ task }}
+        {% endfor %}
+        {% endif %}
 
-
-
-<<<<<<< HEAD
+      </div> <!--closes form-group class-->
 
 =======
     <!-- Button trigger modal -->
@@ -166,6 +161,7 @@
     </div>
   </div>
 
+<<<<<<< HEAD
 
 </body>
 <<<<<<< HEAD
@@ -177,10 +173,18 @@ fetch('http://127.0.0.1:5000/v1/entries/tasks/all')
 </script>
 
 >>>>>>> master
+=======
+>>>>>>> 61b1cffd8a760704588b37fec61db7f327d958d7
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script type="text/javascript" src="../static/js/engine.js"></script>
 <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+<<<<<<< HEAD
 
+=======
+
+
+</body>
+>>>>>>> 61b1cffd8a760704588b37fec61db7f327d958d7
 </html>

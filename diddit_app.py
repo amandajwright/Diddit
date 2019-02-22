@@ -3,6 +3,9 @@ import sqlite3
 from diddit_funcs import *
 from db import *
 import requests
+import json
+from flask import Markup
+import datetime
 
 app=Flask(__name__)
 
@@ -14,7 +17,38 @@ def dict_factory(cursor, row):
 
 @app.route("/", methods=["GET", "POST"])
 def home():     
-    return render_template("index.html")
+    data = requests.get('http://127.0.0.1:5000/v1/entries/tasks/all').text
+    response = json.loads(data)
+    today_html_block = []
+    future_html_block = []
+    for task in response:
+        if task['end_date'] <= datetime.datetime.today().strftime('%Y-%m-%d'):
+            
+            if task['priority'] == 'high':
+                html_block_template = '''<div class="single-task"><input name={} id={} class="strikethrough" type="checkbox">
+                <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal" style='color:red'>{}
+                </a></label></div>'''.format(task['id'], task['id'], task['title'])
+                today_html_block.append(Markup(html_block_template))
+
+            else:
+                html_block_template = '''<div class="single-task"><input name={} id={} class="strikethrough" type="checkbox">
+                <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">{}
+                </a></label></div>'''.format(task['id'], task['id'], task['title'])
+                today_html_block.append(Markup(html_block_template))
+        else:
+            if task['priority'] == 'high':
+                html_block_template = '''<div class="single-task"><input name={} id={} class="strikethrough" type="checkbox">
+                <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal" style='color:red'>{}
+                </a></label></div>'''.format(task['id'], task['id'], task['title'])
+                future_html_block.append(Markup(html_block_template))
+
+            else:
+                html_block_template = '''<div class="single-task"><input name={} id={} class="strikethrough" type="checkbox">
+                <label for="task-1" class="strikeThis"><a data-toggle="modal" href="#ViewTaskModal">{}
+                </a></label></div>'''.format(task['id'], task['id'], task['title'])
+                future_html_block.append(Markup(html_block_template))
+
+    return render_template("index.html", today_html_block=today_html_block, future_html_block=future_html_block)
 
 @app.route("/v1/entries/tasks/all", methods=["GET"])
 def all_tasks():      
@@ -41,24 +75,6 @@ def create_task():
     # close_db(conn, c)
     c.close
     conn.close
-
-@app.route("/v1/entries/tasks/all", methods=["GET"])
-def edit_task():
-    db_path = get_db()
-    conn, c = connect_db(db_path)
-    conn.row_factory = dict_factory
-    task_id = 3
-    title = 'Eat yoghurt'
-    description = 'Yoghurt in fridge'
-    status = 'not done'
-    priority = 'high'
-    start_date = '2019-02-21'
-    end_date = '2019-02-21'
-    c.execute("INSERT INTO to_do_list(id, title, description, status, priority, start_date, end_date) VALUES(?,?,?,?,?,?,?)",(task_id, title, description, status, priority, start_date, end_date,))
-    conn.commit()
-    c.close
-    conn.close
-    return jsonify(all_tasks)
 
 
 @app.errorhandler(404)
